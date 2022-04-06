@@ -3,7 +3,7 @@ import { UserContext } from "../context/User";
 
 const Navbar = () => {
   // const { user } = useContext(UserContext);
-  const user = "Sarah";
+  const user = "Grumpy19";
 
   return (
     <div className="navbar row">

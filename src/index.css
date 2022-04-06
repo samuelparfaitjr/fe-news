@@ -15,6 +15,9 @@ html {
   --color-white: #ffffff;
   --color-black: #000000;
   --color-orange: #f1c0a5;
+  --color-darkorange: #e1b299;
+  --transition: all 0.5s cubic-bezier(0, 0.8, 0.13, 1);
+  --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 * {
@@ -53,7 +56,7 @@ a {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: Rubik, sans-serif;
-  font-size: calc(16px + 0.25em);
+  font-size: calc(16px + 0.25vw);
   font-weight: 300;
   width: 100vw;
   height: 100vh;
@@ -85,6 +88,10 @@ a {
   height: 54px;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--color-darkorange);
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 .profile-name {
@@ -95,4 +102,55 @@ a {
 .profile-link {
   text-align: center;
   width: 100%;
+}
+
+/* Logo */
+.logo {
+  display: block;
+  text-decoration: none;
+  font-size: 2.5em;
+  font-weight: 500;
+}
+
+/* Header */
+header {
+  background-color: var(--color-orange);
+  text-align: center;
+  padding: 1em 0;
+}
+
+/* Navigation */
+
+nav ul {
+  margin: 1em 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+nav ul li a {
+  position: relative;
+  text-decoration: none;
+  margin: 0 0.25em;
+  z-index: 1;
+}
+
+nav ul li a:after {
+  content: "";
+  display: none;
+  position: absolute;
+  top: -0.25em;
+  bottom: -0.25em;
+  left: -0.5em;
+  right: -0.5em;
+  padding: 0 1em;
+  border-radius: 4px;
+  background-color: var(--color-background);
+  z-index: -1;
+}
+
+nav ul li a.active:after {
+  display: block;
 }
