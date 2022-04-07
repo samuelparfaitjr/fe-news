@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../context/User";
+import Avatar from "../assets/avatar.jpeg";
 
 const Navbar = () => {
   // const { user } = useContext(UserContext);
@@ -8,8 +9,13 @@ const Navbar = () => {
   return (
     <nav className="navbar row">
       {user ? (
-        <div>
-          Welcome, <span className="profile-name">{user}</span>
+        <div className="profile-info">
+          <div>
+            Hi, <span className="profile-name">{user}</span>
+          </div>
+          <div className="profile-avatar">
+            <img src={Avatar} alt={user} />
+          </div>
         </div>
       ) : (
         <a href="/users" className="profile-link">

@@ -9,6 +9,7 @@ const Home = () => {
     {
       id: 1,
       title: "The Quick Fox",
+      topic: "Cooking",
       body: "The quick brown fox jumps over the lazy dog.",
       date: "06 apr 2022",
       comment: 5,
@@ -17,6 +18,7 @@ const Home = () => {
     {
       id: 2,
       title: "Lady Bug",
+      topic: "Football",
       body: "The pink bee flew  over the lazy bug.",
       date: "06 apr 2012",
       comment: 5,
@@ -25,6 +27,7 @@ const Home = () => {
     {
       id: 3,
       title: "Jada Pinkett",
+      topic: "Gaming",
       body: "Until you slap somebody.",
       date: "06 jul 2022",
       comment: 35,
@@ -33,6 +36,7 @@ const Home = () => {
     {
       id: 4,
       title: "Fukushima",
+      topic: "Cooking",
       body: "Should we stop using nuclear energy?",
       date: "04 jul 2022",
       comment: 35,
@@ -44,23 +48,8 @@ const Home = () => {
     <main className="home-page">
       <div className="container">
         <h2 className="section-title">Article</h2>
-
         <Select />
-
-        <div className="grid">
-          {posts.map((post) => {
-            return (
-              <Post
-                key={post.id}
-                title={post.title}
-                body={post.body}
-                date={post.date}
-                comment={post.comment}
-                vote={post.vote}
-              />
-            );
-          })}
-        </div>
+        <Post posts={posts} />
       </div>
     </main>
   );
