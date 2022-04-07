@@ -319,3 +319,11 @@ footer {
   align-items: center;
   gap: 1em;
 }
+
+.contact-links li a {
+  text-decoration: none;
+}
+
+.contact-links li a:hover {
+  color: var(--color-orange);
+}
