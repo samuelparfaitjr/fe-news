@@ -4,7 +4,7 @@ import { useState } from "react";
 // Icons
 import Icon from "./Icon";
 
-const Select = () => {
+const Select = ({ posts }) => {
   const [isActive, setIsActive] = useState(false);
 
   // Handle Sort
@@ -48,7 +48,7 @@ const Select = () => {
           </li>
         </ul>
       </div>
-      <div>4 Articles</div>
+      <div>{posts.length} Articles</div>
     </div>
   );
 };

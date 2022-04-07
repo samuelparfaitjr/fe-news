@@ -23,6 +23,8 @@ html {
   --color-black: #000000;
   --color-orange: #f1c0a5;
   --color-darkorange: #e1b299;
+  --color-red: #f06b6b;
+  --color-lightgray: #a5a5a5;
   --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   --border-radius: 5px;
   --app-width: 1200px;
@@ -213,6 +215,7 @@ main {
 
 /* Article */
 article {
+  position: relative;
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-darkorange);
   border-radius: var(--border-radius);
@@ -232,6 +235,10 @@ article:hover {
 }
 
 /* Post */
+.post-title {
+  text-transform: capitalize;
+}
+
 .post-info {
   flex: 1;
   display: flex;
@@ -324,6 +331,7 @@ article:hover {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  text-align: center;
 }
 
 /* Footer */
@@ -352,3 +360,42 @@ footer {
 .contact-links li a:hover {
   color: var(--color-orange);
 }
+
+/* Custom Buttons */
+.btn-delete {
+  text-align: center;
+  margin: 0;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  bottom: -1.5em;
+  right: 50%;
+  transform: translateX(50%) scale(1);
+  background-color: var(--color-white);
+}
+
+.btn-delete:hover {
+  transform: translateX(50%) scale(1.05);
+}
+
+.btn-delete .bi {
+  margin: 0;
+}
+
+/* No Posts */
+.no-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3em 0;
+}
+
+.no-post-message {
+  font-style: italic;
+  color: var(--color-lightgray);
+}
+
+/* Preloader */
