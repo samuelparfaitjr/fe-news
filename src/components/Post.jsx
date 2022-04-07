@@ -3,12 +3,14 @@ import Icon from "./Icon";
 // Packages
 import moment from "moment";
 
-const Post = ({ posts }) => {
+const Post = ({ posts, handleDelete }) => {
+  const user = "grumpy19";
+
   return (
     <div className="grid">
       {posts.map((post) => {
         return (
-          <article className="card">
+          <article className="card" key={post.id}>
             <div className="post-info">
               <div>
                 <h3 className="post-title">{post.title}</h3>
@@ -25,6 +27,18 @@ const Post = ({ posts }) => {
                 <Icon name="heart" size={16} color="#2e2e2e" />
                 {post.vote}
               </span>
+              {user && (
+                <span className="meta-like">
+                  <button
+                    className="delete-button"
+                    onClick={() => {
+                      handleDelete(post.id);
+                    }}
+                  >
+                    <Icon name="trash" size={16} color="#2e2e2e" />
+                  </button>
+                </span>
+              )}
             </div>
           </article>
         );

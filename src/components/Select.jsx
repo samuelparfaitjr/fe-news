@@ -48,7 +48,7 @@ const Select = () => {
           </li>
         </ul>
       </div>
-      <div>200 Articles</div>
+      <div>4 Articles</div>
     </div>
   );
 };

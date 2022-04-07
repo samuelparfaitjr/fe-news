@@ -44,12 +44,18 @@ const Home = () => {
     },
   ]);
 
+  // Handle delete
+  const handleDelete = (postId) => {
+    const updatedPosts = posts.filter((post) => post.id !== postId);
+    setPosts(updatedPosts);
+  };
+
   return (
     <main className="home-page">
       <div className="container">
         <h2 className="section-title">Article</h2>
         <Select />
-        <Post posts={posts} />
+        <Post posts={posts} handleDelete={handleDelete} />
       </div>
     </main>
   );
