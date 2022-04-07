@@ -69,8 +69,10 @@ a {
 }
 
 img {
-  display: inline-block;
-  width: 100%;
+  display: block;
+  max-width: 100%;
+  object-fit: contain;
+  height: 100%;
 }
 
 button {
@@ -376,12 +378,21 @@ footer {
   background-color: var(--color-white);
 }
 
+.btn-user-select img {
+  pointer-events: none;
+}
+
 .btn-delete:hover {
   transform: translateX(50%) scale(1.05);
 }
 
 .btn-delete .bi {
   margin: 0;
+}
+
+.btn-select-profile {
+  text-decoration: none;
+  font-weight: 500;
 }
 
 /* No Posts */
@@ -398,4 +409,47 @@ footer {
   color: var(--color-lightgray);
 }
 
-/* Preloader */
+/* Users Page */
+.user-list {
+  margin: 3em 0 3em 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.user-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-select {
+  border: none;
+  background-color: transparent;
+  width: 10em;
+  height: 10em;
+  margin-bottom: 1em;
+  overflow: hidden;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: scale(0.9);
+  background-color: var(--color-white);
+  transition: transform 0.4s cubic-bezier(0, 0.8, 0.13, 1);
+}
+
+.user-select:hover {
+  transform: scale(1);
+  border: 5px solid var(--color-orange);
+}
+
+.user-select:active {
+  border: 3px solid var(--color-darkorange);
+}
+
+.avatar-label {
+  font-weight: 500;
+}

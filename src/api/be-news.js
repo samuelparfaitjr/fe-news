@@ -12,7 +12,7 @@ export const fetchPosts = async () => {
     } = await beNews.get("/articles");
     return articles;
   } catch (error) {
-    return error;
+    return error.response.data;
   }
 };
 
@@ -24,6 +24,6 @@ export const fetchUsers = async () => {
     } = await beNews.get("/users");
     return users;
   } catch (error) {
-    return error;
+    return error.response.data;
   }
 };

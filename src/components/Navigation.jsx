@@ -24,6 +24,11 @@ const Navigation = () => {
             <span>Football</span>
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/users">
+            <span>Users</span>
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

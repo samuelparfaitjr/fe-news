@@ -32,20 +32,27 @@ const Users = () => {
   if (error) return <Error error={error} />;
 
   const handleClick = (e) => {
-    setUser(e.target.id);
-    console.log(e.target.id)
+    const username = e.target.id;
+    const avatar = users.find((user) => user.username === username);
+    setUser([username, avatar.avatar_url]);
+    const pathname = document.referrer || "/";
+    navigate(pathname);
   };
 
   return (
     <main className="user-page">
-      <div className="user-list-container">
+      <div className="container">
+        <h2 className="section-title">Who do you like?</h2>
         <ul className="user-list">
           {users.map((user) => (
             <li key={user.username}>
-              <button id={user.username} onClick={handleClick}>
-                <img src={user.avatar_url} alt={user.username}></img>
-                <div className="user-avatar-label">{user.username}</div>
-              </button>
+              <img
+                src={user.avatar_url}
+                className="user-select"
+                id={user.username}
+                onClick={handleClick}
+              />
+              <div className="avatar-label">{user.username}</div>
             </li>
           ))}
         </ul>
