@@ -6,7 +6,7 @@ const Navbar = () => {
   const user = "Grumpy19";
 
   return (
-    <div className="navbar row">
+    <nav className="navbar row">
       {user ? (
         <div>
           Welcome, <span className="profile-name">{user}</span>
@@ -17,7 +17,7 @@ const Navbar = () => {
         </a>
       )}
       {user && <a href="/users">Switch Profile</a>}
-    </div>
+    </nav>
   );
 };
 

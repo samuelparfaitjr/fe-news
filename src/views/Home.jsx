@@ -2,6 +2,7 @@ import { useState } from "react";
 
 // Component
 import Post from "../components/Post";
+import Select from "../components/Select";
 
 const Home = () => {
   const [posts, setPosts] = useState([
@@ -29,25 +30,39 @@ const Home = () => {
       comment: 35,
       vote: 90,
     },
+    {
+      id: 4,
+      title: "Fukushima",
+      body: "Should we stop using nuclear energy?",
+      date: "04 jul 2022",
+      comment: 35,
+      vote: 90,
+    },
   ]);
 
   return (
-    <div className="container">
-      <div className="home-page column">
-        {posts.map((post) => {
-          return (
-            <Post
-              key={post.id}
-              title={post.title}
-              body={post.body}
-              date={post.date}
-              comment={post.comment}
-              vote={post.vote}
-            />
-          );
-        })}
+    <main className="home-page">
+      <div className="container">
+        <h2 className="section-title">Article</h2>
+
+        <Select />
+
+        <div className="grid">
+          {posts.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                title={post.title}
+                body={post.body}
+                date={post.date}
+                comment={post.comment}
+                vote={post.vote}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 
