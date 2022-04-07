@@ -3,9 +3,9 @@ import { UserContext } from "../context/User";
 import Avatar from "../assets/avatar.jpeg";
 
 const Navbar = () => {
-  // const { user } = useContext(UserContext);
-  const user = "Grumpy19";
-
+  const { user } = useContext(UserContext);
+  console.log(user);
+  
   return (
     <nav className="navbar row">
       {user ? (

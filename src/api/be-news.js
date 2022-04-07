@@ -9,8 +9,20 @@ export const fetchPosts = async () => {
   try {
     const {
       data: { articles },
-    } = await beNews.get("/articless");
+    } = await beNews.get("/articles");
     return articles;
+  } catch (error) {
+    return error;
+  }
+};
+
+// Fetching Users
+export const fetchUsers = async () => {
+  try {
+    const {
+      data: { users },
+    } = await beNews.get("/users");
+    return users;
   } catch (error) {
     return error;
   }

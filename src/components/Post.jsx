@@ -5,7 +5,7 @@ import * as utils from "../utils/helpers";
 import moment from "moment";
 
 const Post = ({ posts, handleDelete }) => {
-  const user = "grumpy19";
+  // const user = "grumpy19";
 
   return (
     <div className="grid">
