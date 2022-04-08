@@ -1,30 +1,17 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 // Icons
 import Icon from "./Icon";
 
-const Select = ({ posts }) => {
-  const [isActive, setIsActive] = useState(false);
-
-  // Handle Sort
-  const handleSort = (e) => {
-    // setSort(e.target.search);
-    setIsActive(false);
-  };
-
+const Select = ({ posts, handleSort, active }) => {
   return (
     <div className="select">
       <div className="select-content">
-        <button
-          onClick={() => {
-            setIsActive(!isActive);
-          }}
-        >
-          <Icon name={`${isActive ? "x-lg" : "sliders"}`} size="inherit" />
+        <button onClick={handleSort}>
+          <Icon name={`${active ? "x-lg" : "sliders"}`} size="inherit" />
           <span>Filter</span>
         </button>
-        <ul className={`select-options ${isActive ? "visible" : ""}`}>
+        <ul className={`select-options ${active ? "visible" : ""}`}>
           <h4>Sort by</h4>
           <li>
             <Link to={`?sort_by=created_at&order=desc`} onClick={handleSort}>

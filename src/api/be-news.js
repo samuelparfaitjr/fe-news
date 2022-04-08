@@ -5,11 +5,11 @@ const beNews = axios.create({
 });
 
 // Fetching Posts
-export const fetchPosts = async () => {
+export const fetchPosts = async (slug, sort) => {
   try {
     const {
       data: { articles },
-    } = await beNews.get("/articles");
+    } = await beNews.get(`/articles${sort || ""}`, { params: { topic: slug } });
     return articles;
   } catch (error) {
     return error.response.data;
