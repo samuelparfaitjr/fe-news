@@ -1,4 +1,7 @@
 import Icon from "./Icon";
+import { Link } from "react-router-dom";
+
+// Helpers
 import * as utils from "../utils/helpers";
 
 // Packages
@@ -19,41 +22,45 @@ const Post = ({ posts, handleDelete }) => {
       ) : (
         posts.map((post) => {
           return (
-            <article className="card" key={post.article_id}>
-              <div className="post-info">
-                <div>
-                  <h3 className="post-title">
-                    {utils.excerpt(post.title, 30)}
-                  </h3>
-                  <p className="post-excerpt">{utils.excerpt(post.body, 50)}</p>
+            <Link to={`/articles/${post.article_id}`} key={post.article_id}>
+              <article className="card">
+                <div className="post-info">
+                  <div>
+                    <h3 className="post-title">
+                      {utils.excerpt(post.title, 30)}
+                    </h3>
+                    <p className="post-excerpt">
+                      {utils.excerpt(post.body, 50)}
+                    </p>
+                  </div>
+                  <div className="meta-date">
+                    {moment(post.created_at, "YYYYMMDD").fromNow()}
+                  </div>
                 </div>
-                <div className="meta-date">
-                  {moment(post.created_at, "YYYYMMDD").fromNow()}
-                </div>
-              </div>
-              <div className="post-meta">
-                <span className="meta-comment">
-                  <Icon name="chat-square-text" size={16} color="#2e2e2e" />
-                  {post.comment_count}
-                </span>
-                <span className="meta-like">
-                  <Icon name="heart" size={16} color="#2e2e2e" />
-                  {post.votes}
-                </span>
-                {/* {user && (
-                <span className="meta-like">
+                <div className="post-meta">
+                  <span className="meta-comment">
+                    <Icon name="chat-square-text" size={16} color="#2e2e2e" />
+                    {post.comment_count}
+                  </span>
+                  <span className="meta-like">
+                    <Icon name="heart" size={16} color="#2e2e2e" />
+                    {post.votes}
+                  </span>
+                  {/* {user && (
+                  <span className="meta-like">
                   <button
-                    className="btn-delete"
-                    onClick={() => {
-                      handleDelete(post.id);
-                    }}
+                  className="btn-delete"
+                  onClick={() => {
+                    handleDelete(post.id);
+                  }}
                   >
-                    <Icon name="trash" size={16} color="#2e2e2e" />
+                  <Icon name="trash" size={16} color="#2e2e2e" />
                   </button>
-                </span>
-              )} */}
-              </div>
-            </article>
+                  </span>
+                )} */}
+                </div>
+              </article>
+            </Link>
           );
         })
       )}

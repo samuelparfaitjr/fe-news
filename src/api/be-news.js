@@ -16,6 +16,16 @@ export const fetchPosts = async (slug, sort) => {
   }
 };
 
+// Fetch Single Post
+export const fetchPostById = async (articleId) => {
+  try {
+    const { data } = await beNews.get(`/articles/${articleId}`);
+    return data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
 // Fetching Users
 export const fetchUsers = async () => {
   try {
@@ -23,6 +33,17 @@ export const fetchUsers = async () => {
       data: { users },
     } = await beNews.get("/users");
     return users;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+// Update Vote
+export const updateVote = async (voteId, count) => {
+  try {
+    const voteUpdate = { inc_votes: count };
+    const { data } = await beNews.patch(`/articles/${voteId}`, voteUpdate);
+    return data;
   } catch (error) {
     return error.response.data;
   }

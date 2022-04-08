@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 // Views
 import Home from "./views/Home";
 import Users from "./views/Users";
+import Single from "./views/Single";
 import Error from "./views/Error";
 
 function App() {
@@ -21,8 +22,8 @@ function App() {
           <Header />
           <Routes>
             <Route path="/*" element={<Home />} />
-            <Route path="/articles/*" element={<Home />} />
-            <Route path=":article_id" element={<Single />} />
+            <Route path="/articles/" element={<Home />} />
+            <Route path="/articles/:articleId" element={<Single />} />
             <Route path="/users" element={<Users />} />
             <Route path="/topics/:slug" element={<Home />} />
             <Route path="*" element={<Error />} />
