@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { fetchPostById } from "../api/be-news";
 
 // Components
@@ -9,6 +9,8 @@ import Comment from "../components/Comment";
 import Error from "../views/Error";
 import moment from "moment";
 import * as utils from "../utils/helpers";
+import PostComment from "../components/PostComment";
+import { UserContext } from "../context/User";
 
 const Single = () => {
   const [article, setArticle] = useState({});
@@ -27,6 +29,9 @@ const Single = () => {
     });
   }, [articleId]);
 
+  const { user } = useContext(UserContext);
+  const [username, avatar] = user || [];
+
   if (error) return <Error response={error} />;
   if (loading) return <Preloader />;
 
@@ -35,7 +40,6 @@ const Single = () => {
       <main>
         <div className="container">
           <div className="single-article">
-            <h2 className="section-title">{article.title}</h2>
             <div className="single-meta-container">
               <span className="meta-author">by {article.author}</span>
               {" • "}
@@ -43,6 +47,7 @@ const Single = () => {
                 {moment(article.created_at).format("ll")}
               </span>
             </div>
+            <h2 className="section-title">{article.title}</h2>
             <div
               className="content"
               dangerouslySetInnerHTML={{
@@ -57,6 +62,9 @@ const Single = () => {
           </div>
           <section className="comment">
             <Comment articleId={article.article_id} />
+          </section>
+          <section className="leave-comment">
+            <PostComment username={username} avatar={avatar} />
           </section>
         </div>
       </main>
