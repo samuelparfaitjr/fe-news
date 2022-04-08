@@ -29,7 +29,7 @@ const Users = () => {
 
   // Show loader if loading
   if (loading) return <Preloader />;
-  if (error) return <Error error={error} />;
+  if (error) return <Error response={error} />;
 
   const handleClick = (e) => {
     const username = e.target.id;

@@ -29,7 +29,7 @@ const PostComment = ({ avatar, username }) => {
           <h3>Leave a comment</h3>
           <div className="loggedin-user-info no-profile-comment">
             <img src={Avatar} alt="Guest" />
-            <div>
+            <div className="no-profile-message">
               Sorry, you can't leave comments. Switch{" "}
               <a href="/users" className="no-profile-link">
                 <strong>Profile.</strong>

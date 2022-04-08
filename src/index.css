@@ -42,6 +42,7 @@ body {
   min-height: 100%;
   font-family: Rubik, sans-serif;
   font-size: calc(16px + 0.25vw);
+  line-height: 1.5;
   font-weight: 300;
   color: var(--color-foreground);
   background-color: var(--color-background);
@@ -347,9 +348,6 @@ textarea {
 }
 
 .loggedin-user-info {
-  display: flex;
-  align-items: center;
-  gap: 1em;
   margin-bottom: 1em;
 }
 
@@ -537,10 +535,19 @@ footer {
 .no-profile-comment {
   background-color: var(--color-white);
   padding: 1em;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.no-profile-message {
+  overflow: hidden;
+  padding-left: 0.5em;
 }
 
 .no-profile-comment img {
   background-color: var(--color-beige);
+  float: left;
 }
 
 .no-profile-link {

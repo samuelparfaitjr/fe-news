@@ -45,7 +45,7 @@ const Home = () => {
 
   // Show loader if loading
   if (loading) return <Preloader />;
-  if (error) return <Error error={error} />;
+  if (error) return <Error response={error} />;
 
   return (
     <main className="home-page">
