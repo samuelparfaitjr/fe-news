@@ -35,14 +35,18 @@ const Users = () => {
     const username = e.target.id;
     const avatar = users.find((user) => user.username === username);
     setUser([username, avatar.avatar_url]);
-    const pathname = document.referrer || "/";
-    navigate(pathname);
+    const referrer = new URL(document.referrer);
+    if (referrer) {
+      navigate(referrer.pathname);
+    } else {
+      navigate("/");
+    }
   };
 
   return (
     <main className="user-page">
       <div className="container">
-        <h2 className="section-title">Who do you like?</h2>
+        <h2 className="section-title">Who are you?</h2>
         <ul className="user-list">
           {users.map((user) => (
             <li key={user.username}>
@@ -51,6 +55,7 @@ const Users = () => {
                 className="user-select"
                 id={user.username}
                 onClick={handleClick}
+                alt={user.username}
               />
               <div className="avatar-label">{user.username}</div>
             </li>

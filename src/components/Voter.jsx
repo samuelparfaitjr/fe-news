@@ -31,6 +31,7 @@ const Voter = ({ currentVote, voteId }) => {
 
   return (
     <div className="vote-controls">
+      <strong>Did you like this article?</strong>
       <button
         disabled={isDisabled}
         className="vote-btn"

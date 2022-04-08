@@ -5,7 +5,7 @@ import { fetchPostById } from "../api/be-news";
 // Components
 import Preloader from "../components/Preloader";
 import Voter from "../components/Voter";
-// import Comment from "../components/Comment";
+import Comment from "../components/Comment";
 import Error from "../views/Error";
 import moment from "moment";
 import * as utils from "../utils/helpers";
@@ -49,11 +49,15 @@ const Single = () => {
                 __html: utils.paraText(article.body),
               }}
             />
+
+            {/* Vote Component */}
             <Voter currentVote={article.votes} voteId={article.article_id} />
-            <section className="comment">
-              {/* <Comment id={article.article_id} /> */}
-            </section>
+
+            {/* Comment Sectionx */}
           </div>
+          <section className="comment">
+            <Comment articleId={article.article_id} />
+          </section>
         </div>
       </main>
     </>

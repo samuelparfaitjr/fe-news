@@ -5,7 +5,11 @@ const Footer = () => {
     <footer>
       <ul className="contact-links">
         <li>
-          <a href="https://github.com/wakenado/fe-news" target="_blank">
+          <a
+            href="https://github.com/wakenado/fe-news"
+            target="_blank"
+            rel="noreferrer"
+          >
             <Icon name="github" size={24} color="inherit" />
             Github
           </a>
@@ -14,6 +18,7 @@ const Footer = () => {
           <a
             href="https://www.linkedin.com/in/samuel-parfait-75a201236/"
             target="_blank"
+            rel="noreferrer"
           >
             <Icon name="linkedin" size={24} color="inherit" />
             Linkedin

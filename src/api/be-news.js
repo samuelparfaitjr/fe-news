@@ -38,6 +38,19 @@ export const fetchUsers = async () => {
   }
 };
 
+// Fetching Comments
+export const fetchComments = async (articleId) => {
+  try {
+    const {
+      data: { comments },
+    } = await beNews.get(`/articles/${articleId}/comments`);
+    return comments;
+  } catch (error) {
+    return error.response.data;
+    
+  }
+};
+
 // Update Vote
 export const updateVote = async (voteId, count) => {
   try {

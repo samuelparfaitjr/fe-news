@@ -23,8 +23,10 @@ html {
   --color-black: #000000;
   --color-orange: #f1c0a5;
   --color-darkorange: #e1b299;
+  --color-boldorange: #e47336;
   --color-red: #f06b6b;
   --color-lightgray: #a5a5a5;
+  --color-lightergray: #ededed;
   --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   --border-radius: 5px;
   --app-width: 1200px;
@@ -78,6 +80,10 @@ img {
 
 button {
   cursor: pointer;
+}
+
+strong {
+  font-weight: 500;
 }
 
 /* App */
@@ -246,6 +252,14 @@ article:hover {
 
 .meta-author {
   font-weight: 500;
+  color: var(--color-boldorange);
+}
+
+.author-meta {
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Vote Component */
@@ -253,6 +267,7 @@ article:hover {
   display: flex;
   gap: 0.5em;
   align-items: center;
+  margin: 1.25em 0 0.5em;
 }
 
 .vote-btn {
@@ -265,6 +280,22 @@ article:hover {
 
 .vote-btn:active {
   transform: scale(0.9);
+}
+
+/* Comments */
+.comment-section-title {
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+.comment-box {
+  position: relative;
+  margin-bottom: 1em;
+  border-bottom: 1px solid var(--color-lightergray);
+  padding-bottom: 1em;
+  background-color: var(--color-white);
+  padding: 1em;
+  border-radius: var(--border-radius);
 }
 
 /* Card */
@@ -295,7 +326,7 @@ article:hover {
 
 /* Select Box */
 .select {
-  border-bottom: 1px solid rgba(225, 178, 153, 0.2);
+  border-bottom: 1px solid var(--color-lightergray);
   padding: 1em 0;
   margin-bottom: 2em;
   display: flex;
@@ -403,23 +434,19 @@ footer {
 .btn-delete {
   text-align: center;
   margin: 0;
-  width: 3em;
-  height: 3em;
-  border-radius: 50%;
   border: none;
+  background-color: transparent;
   position: absolute;
-  bottom: -1.5em;
-  right: 50%;
-  transform: translateX(50%) scale(1);
-  background-color: var(--color-white);
+  right: 0.5em;
+  top: 1em;
 }
 
 .btn-user-select img {
   pointer-events: none;
 }
 
-.btn-delete:hover {
-  transform: translateX(50%) scale(1.05);
+.btn-delete:active {
+  transform: scale(0.9);
 }
 
 .btn-delete .bi {
