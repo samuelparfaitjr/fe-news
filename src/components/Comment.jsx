@@ -16,7 +16,7 @@ const Comment = ({ articleId }) => {
   const [error, setError] = useState(null);
 
   const { user } = useContext(UserContext);
-  const [username, avatar] = user || [];
+  const [username] = user || [];
 
   useEffect(() => {
     fetchComments(articleId).then((response) => {
@@ -84,7 +84,6 @@ const Comment = ({ articleId }) => {
           </div>
         );
       })}
-      {/* <LeaveComment articleId={id} setter={setNewComment} /> */}
     </>
   );
 };

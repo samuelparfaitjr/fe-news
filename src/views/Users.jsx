@@ -35,9 +35,10 @@ const Users = () => {
     const username = e.target.id;
     const avatar = users.find((user) => user.username === username);
     setUser([username, avatar.avatar_url]);
-    const referrer = new URL(document.referrer);
+    const referrer = document.referrer;
     if (referrer) {
-      navigate(referrer.pathname);
+      const { pathname } = new URL(referrer);
+      navigate(pathname);
     } else {
       navigate("/");
     }

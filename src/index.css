@@ -25,8 +25,9 @@ html {
   --color-darkorange: #e1b299;
   --color-boldorange: #e47336;
   --color-red: #f06b6b;
-  --color-lightgray: #a5a5a5;
-  --color-lightergray: #ededed;
+  --color-heather: #a5a5a5;
+  --color-lightgrey: #ededed;
+  --color-beige: #f6f6f6;
   --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   --border-radius: 5px;
   --app-width: 1200px;
@@ -103,6 +104,7 @@ strong {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1em;
+  align-items: stretch;
 }
 
 .row {
@@ -190,20 +192,13 @@ nav ul li a.active:after {
 
 .profile-name {
   font-weight: 500;
-  text-transform: capitalize;
 }
 
 .profile-avatar {
   width: 2.5em;
   height: 2.5em;
   border-radius: 50%;
-  overflow: hidden;
-}
-
-.profile-avatar img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+  background-color: var(--color-beige);
 }
 
 .profile-link {
@@ -232,6 +227,7 @@ article {
   transition: box-shadow 0.4s cubic-bezier(0, 0.8, 0.13, 1);
   display: flex;
   padding: 1em;
+  height: 100%;
   z-index: 1;
 }
 
@@ -299,7 +295,7 @@ article:hover {
 .comment-box {
   position: relative;
   margin-bottom: 1em;
-  border-bottom: 1px solid var(--color-lightergray);
+  border-bottom: 1px solid var(--color-lightgrey);
   padding-bottom: 1em;
   background-color: var(--color-white);
   padding: 1em;
@@ -308,7 +304,7 @@ article:hover {
 
 /* Post Comment */
 .post-form-container {
-  border-bottom: 1px solid var(--color-lightergray);
+  border-bottom: 1px solid var(--color-lightgrey);
   overflow: hidden;
   border-radius: var(--border-radius);
   background-color: var(--color-white);
@@ -392,7 +388,7 @@ textarea {
 
 /* Select Box */
 .select {
-  border-bottom: 1px solid var(--color-lightergray);
+  border-bottom: 1px solid var(--color-lightgrey);
   padding: 1em 0;
   margin-bottom: 2em;
   display: flex;
@@ -535,7 +531,20 @@ footer {
 
 .no-post-message {
   font-style: italic;
-  color: var(--color-lightgray);
+  color: var(--color-heather);
+}
+
+.no-profile-comment {
+  background-color: var(--color-white);
+  padding: 1em;
+}
+
+.no-profile-comment img {
+  background-color: var(--color-beige);
+}
+
+.no-profile-link {
+  color: var(--color-boldorange);
 }
 
 /* Users Page */

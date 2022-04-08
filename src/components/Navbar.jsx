@@ -10,11 +10,10 @@ const Navbar = () => {
     <nav className="navbar row">
       <div className="profile-info">
         <div>
-          Hello, <span className="profile-name">{user ? username : "Guest"}</span>
+          Hi,{" "}
+          <span className="profile-name">{user ? username : "Guest"}</span>
         </div>
-        <div className="profile-avatar">
-          <img src={user ? avatar : panda} alt={username} />
-        </div>
+        <img src={user ? avatar : panda} alt={username} className="profile-avatar" />
       </div>
     </nav>
   );
