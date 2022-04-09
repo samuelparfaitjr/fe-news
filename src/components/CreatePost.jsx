@@ -3,11 +3,6 @@ import { UserContext } from "../context/User";
 import Icon from "./Icon";
 
 const CreatePost = ({ newPost, setNewPost }) => {
-  const [isActive, setIsActive] = useState(false);
-  // const [author, setAuthor] = useState("");
-  // const [title, setTitle] = useState("");
-  // const [topic, setTopic] = useState("Cooking");
-  // const [body, setBody] = useState("");
   const [inputs, setInputs] = useState({});
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -31,9 +26,12 @@ const CreatePost = ({ newPost, setNewPost }) => {
     e.preventDefault();
 
     setTimeout(() => {
-      setSuccess("");
       setNewPost(false);
-    }, 1000);
+    }, 2000);
+
+    setTimeout(() => {
+      setSuccess("");
+    }, 3000);
 
     const messages = [];
 
@@ -72,7 +70,7 @@ const CreatePost = ({ newPost, setNewPost }) => {
           ) : null}
           {success ? (
             <div className="success">
-              New post added! <Icon name="check-all" size={24} />
+              Hooray! New post created. <Icon name="check-all" size={24} />
             </div>
           ) : null}
         </div>
@@ -89,14 +87,18 @@ const CreatePost = ({ newPost, setNewPost }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="form-control">
+          <div className="form-control select-form">
             <label htmlFor="topic">Select a topic</label>
+            <Icon name="chevron-compact-down" size={16} />
             <select
               value={inputs.topic || ""}
               name="topic"
               required
               onChange={handleChange}
             >
+              <option defaultValue="Selected topic" disabled hidden>
+                Select topic
+              </option>
               <option value="cooking">Cooking</option>
               <option value="coding">Coding</option>
               <option value="football">Football</option>

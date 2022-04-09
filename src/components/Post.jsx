@@ -1,6 +1,5 @@
-import { useContext } from "react";
+
 import { Link } from "react-router-dom";
-import { UserContext } from "../context/User";
 import Icon from "./Icon";
 
 import * as utils from "../utils/helpers";
@@ -8,8 +7,6 @@ import * as utils from "../utils/helpers";
 import moment from "moment";
 
 const Post = ({ posts }) => {
-  const { user } = useContext(UserContext);
-  const [username] = user || [];
 
   return (
     <div className="grid">

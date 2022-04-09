@@ -85,6 +85,18 @@ button {
   cursor: pointer;
 }
 
+input,
+select,
+button,
+textarea {
+  outline: none;
+}
+select {
+  background-color: var(--color-white);
+  transition: none;
+  -webkit-transition: none;
+}
+
 strong {
   font-weight: 500;
 }
@@ -351,8 +363,8 @@ article:hover {
 .btn-floating {
   position: fixed;
   right: 1em;
-  top: 50%;
-  transform: translateY(-50%) scale(1);
+  bottom: 1em;
+  transform: scale(1);
   background-color: var(--color-black);
   color: var(--color-white);
   width: 60px;
@@ -368,7 +380,7 @@ article:hover {
 }
 
 .btn-floating:active {
-  transform: translateY(-50%) scale(0.95);
+  transform: scale(0.95);
 }
 
 .btn-floating .bi {
@@ -479,6 +491,7 @@ textarea {
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
+  position: relative;
 }
 
 .form-control input,
@@ -504,6 +517,17 @@ textarea {
 .form-control input,
 .form-control select {
   padding: 0 0.625em;
+}
+
+.form-control .select-form {
+
+}
+
+.form-control .icons {
+  position: absolute;
+  right: 1em;
+  top: 60%;
+
 }
 
 /* Success & Errors messages */
