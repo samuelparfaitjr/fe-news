@@ -1,45 +1,43 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../context/User";
+import { createArticle } from "../api/be-news";
+
 import Icon from "./Icon";
 
 const CreatePost = ({ newPost, setNewPost }) => {
-  const [inputs, setInputs] = useState({});
+  const [title, setTitle] = useState("");
+  const [topic, setTopic] = useState("");
+  const [body, setBody] = useState("");
+  const [serverError, setServerError] = useState(null);
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
 
   const { user } = useContext(UserContext);
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputs(() => ({ ...inputs, author: user, [name]: value }));
-  };
+  const [username] = user;
 
   const handleReset = () => {
     Array.from(document.querySelectorAll("input")).forEach(
       (item) => (item.value = "")
     );
-    setInputs({ values: [{}] });
+    setTitle("");
+    setTopic("");
+    setBody("");
+  };
+
+  const handleChange = (e) => {
+    const postData = { title, topic, body, username };
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setTimeout(() => {
-      setNewPost(false);
-    }, 2000);
-
-    setTimeout(() => {
-      setSuccess("");
-    }, 3000);
-
     const messages = [];
 
-    if (inputs.title === undefined || inputs.title === "") {
+    if (title === undefined || title === "") {
       messages.push("Title cannot be blank");
     }
 
-    if (inputs.body === undefined || inputs.body === "") {
+    if (body === undefined || body === "") {
       messages.push("Comment cannot be blank");
     }
 
@@ -47,10 +45,21 @@ const CreatePost = ({ newPost, setNewPost }) => {
       setErrors(messages);
       setSuccess("");
     } else {
-      console.log(inputs);
-      setSuccess("Success!");
-      setErrors([]);
-      // createPost(inputs);
+      createArticle().then((response) => {
+        if (response.message) {
+          setServerError(response.message);
+        } else {
+          setTimeout(() => {
+            setNewPost(false);
+          }, 2000);
+
+          setTimeout(() => {
+            setSuccess("");
+          }, 3000);
+          setSuccess("Success!");
+          setErrors([]);
+        }
+      });
       handleReset();
     }
   };
@@ -61,6 +70,7 @@ const CreatePost = ({ newPost, setNewPost }) => {
         {" "}
         <h2>Create a post</h2>
         <div className="messages">
+          {/* Validation Errors */}
           {errors.length > 0 ? (
             <ul className="error">
               {errors.map((error, index) => {
@@ -68,6 +78,16 @@ const CreatePost = ({ newPost, setNewPost }) => {
               })}
             </ul>
           ) : null}
+
+          {/* Server Errors */}
+          {serverError ? (
+            <div className="server-error">
+              <span>{serverError}</span>{" "}
+              <Icon name="exclamation-octagon-fill" size={24} color="red" />
+            </div>
+          ) : null}
+
+          {/* Success Message */}
           {success ? (
             <div className="success">
               Hooray! New post created. <Icon name="check-all" size={24} />
@@ -75,45 +95,44 @@ const CreatePost = ({ newPost, setNewPost }) => {
           ) : null}
         </div>
         <form onSubmit={handleSubmit}>
-          <input type="hidden" value={user || ""} name="author" />
+          {/* Title */}
           <div className="form-control">
             <label htmlFor="title">Article title</label>
             <input
               type="text"
-              value={inputs.title || ""}
-              name="title"
+              value={title || ""}
               placeholder="Title"
               required
-              onChange={handleChange}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
+
+          {/* Topic */}
           <div className="form-control select-form">
             <label htmlFor="topic">Select a topic</label>
             <Icon name="chevron-compact-down" size={16} />
             <select
-              value={inputs.topic || ""}
-              name="topic"
+              value={topic || ""}
               required
-              onChange={handleChange}
+              onChange={(e) => setTopic(topic)}
             >
-              <option defaultValue="Selected topic" disabled hidden>
-                Select topic
-              </option>
               <option value="cooking">Cooking</option>
               <option value="coding">Coding</option>
               <option value="football">Football</option>
             </select>
           </div>
+
+          {/* Body */}
           <div className="form-control">
             <label htmlFor="topic">Write a post</label>
             <textarea
-              value={inputs.body || ""}
-              name="body"
               placeholder="Write your post here..."
               required
-              onChange={handleChange}
+              onChange={(e) => setTopic(topic)}
             ></textarea>
           </div>
+
+          {/* Submit Button */}
           <button className="btn-post">Add Post</button>
         </form>
         <div></div>

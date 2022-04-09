@@ -539,6 +539,34 @@ textarea {
   text-align: center;
   font-weight: 400;
   color: #287f4e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.error {
+  background-color: #ffded7;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-weight: 400;
+  color: #8f1f1f;
+}
+
+.server-error {
+  background-color: #ffded7;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-weight: 400;
+  color: #8f1f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 /* Select Box */

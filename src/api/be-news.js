@@ -47,7 +47,6 @@ export const fetchComments = async (articleId) => {
     return comments;
   } catch (error) {
     return error.response.data;
-    
   }
 };
 
@@ -58,6 +57,23 @@ export const updateVote = async (voteId, count) => {
     const { data } = await beNews.patch(`/articles/${voteId}`, voteUpdate);
     return data;
   } catch (error) {
+    return error.response.data;
+  }
+};
+
+export const createArticle = async (inputs) => {
+  const post = {
+    title: inputs.title,
+    topic: inputs.topic,
+    author: inputs.author,
+    body: inputs.body,
+  };
+  try {
+    const { data } = await beNews.post("/articles", post);
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error)
     return error.response.data;
   }
 };
