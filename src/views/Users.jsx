@@ -47,7 +47,7 @@ const Users = () => {
   return (
     <main className="user-page">
       <div className="container">
-        <h2 className="section-title">Who are you?</h2>
+        <h2 className="section-title">Pick a profile?</h2>
         <ul className="user-list">
           {users.map((user) => (
             <li key={user.username}>

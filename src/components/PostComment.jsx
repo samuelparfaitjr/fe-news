@@ -1,5 +1,5 @@
 import Avatar from "../assets/avatar.jpeg";
-import Post from "./Post";
+import { Link } from "react-router-dom";
 
 const PostComment = ({ avatar, username }) => {
   return (
@@ -11,7 +11,7 @@ const PostComment = ({ avatar, username }) => {
             <div className="loggedin-user-info">
               <img src={avatar} alt={username} />
               <div>
-                Hiya, <strong>{username}</strong>
+                I'm, <strong>{username}</strong>
               </div>
             </div>
           </div>
@@ -31,9 +31,9 @@ const PostComment = ({ avatar, username }) => {
             <img src={Avatar} alt="Guest" />
             <div className="no-profile-message">
               Sorry, you can't leave comments. Switch{" "}
-              <a href="/users" className="no-profile-link">
+              <Link to="/users" className="no-profile-link">
                 <strong>Profile.</strong>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

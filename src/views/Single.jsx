@@ -11,6 +11,7 @@ import moment from "moment";
 import * as utils from "../utils/helpers";
 import PostComment from "../components/PostComment";
 import { UserContext } from "../context/User";
+import Icon from "../components/Icon";
 
 const Single = () => {
   const [article, setArticle] = useState({});
@@ -67,6 +68,16 @@ const Single = () => {
             <PostComment username={username} avatar={avatar} />
           </section>
         </div>
+        {username === article.author ? (
+          <button
+            className="btn-delete-post btn-floating"
+            onClick={() => console.log("delete")}
+          >
+            <Icon name="trash" size={24} />
+          </button>
+        ) : (
+          ""
+        )}
       </main>
     </>
   );

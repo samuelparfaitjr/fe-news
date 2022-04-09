@@ -60,7 +60,7 @@ const Comment = ({ articleId }) => {
                 </div>
                 {user && username === comment.author ? (
                   <button className="btn-delete">
-                    <Icon name="x-circle-fill" size={18} color="#e47336" />
+                    <Icon name="x-circle-fill" size={18} color="#e34f49" />
                   </button>
                 ) : (
                   ""

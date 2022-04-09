@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchPosts } from "../api/be-news";
+import CreatePost from "../components/CreatePost";
 
 // Component
 import Post from "../components/Post";
 import Preloader from "../components/Preloader";
 import Select from "../components/Select";
+import Icon from "../components/Icon";
 
 // Views
 import Error from "../views/Error";
+import { UserContext } from "../context/User";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -16,12 +19,9 @@ const Home = () => {
   const [sort, setSort] = useState("");
   const [error, setError] = useState();
   const [active, setActive] = useState(false);
+  const [newPost, setNewPost] = useState(false);
 
-  // Handle delete
-  // const handleDelete = (postId) => {
-  //   const updatedPosts = posts.filter((post) => post.id !== postId);
-  //   setPosts(updatedPosts);
-  // };
+  const { user } = useContext(UserContext);
 
   // Handle sort
   const handleSort = (e) => {
@@ -55,6 +55,14 @@ const Home = () => {
         {/* <Post posts={posts} handleDelete={handleDelete} /> */}
         <Post posts={posts} />
       </div>
+      <CreatePost newPost={newPost} setNewPost={setNewPost} />
+      {user ? (
+        <button className="btn-floating" onClick={() => setNewPost(!newPost)}>
+          <Icon name={newPost ? "x-lg" : "pencil-square"} size={24} />
+        </button>
+      ) : (
+        ""
+      )}
     </main>
   );
 };

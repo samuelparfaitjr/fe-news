@@ -21,8 +21,9 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/*" element={<Home />} />
-            <Route path="/articles/" element={<Home />} />
+            <Route path="/" element={<Home />}>
+              <Route path="/articles/" element={<Home />} />
+            </Route>
             <Route path="/articles/:articleId" element={<Single />} />
             <Route path="/users" element={<Users />} />
             <Route path="/topics/:slug" element={<Home />} />

@@ -24,13 +24,14 @@ html {
   --color-orange: #f1c0a5;
   --color-darkorange: #e1b299;
   --color-boldorange: #e47336;
-  --color-red: #f06b6b;
+  --color-red: #e34f49;
   --color-heather: #a5a5a5;
   --color-lightgrey: #ededed;
   --color-beige: #f6f6f6;
   --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   --border-radius: 5px;
   --app-width: 1200px;
+  --transform: transform 0.4s cubic-bezier(0.87, 0, 0.13, 1);
 }
 
 * {
@@ -123,11 +124,22 @@ strong {
 .navbar {
   background-color: var(--color-orange);
   border-bottom: 1px solid var(--color-darkorange);
-  flex-direction: row-reverse;
   align-items: center;
   justify-content: space-between;
   height: 60px;
   padding: 2em 1em;
+}
+
+.navbar .row {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navbar-controls {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 1em;
 }
 
 /* Header */
@@ -187,12 +199,9 @@ nav ul li a.active:after {
 /* Profile */
 .profile-info {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
   gap: 0.5em;
-}
-
-.profile-name {
-  font-weight: 500;
 }
 
 .profile-avatar {
@@ -329,13 +338,44 @@ article:hover {
   font-size: 0.825em;
   text-transform: uppercase;
   letter-spacing: 0.025em;
-  background-color: var(--color-boldorange);
+  background-color: var(--color-black);
   color: var(--color-white);
 }
 
 .btn-post:active {
   transform: scale(0.98);
 }
+
+/* Floating Buttons */
+
+.btn-floating {
+  position: fixed;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  font-weight: inherit;
+  z-index: 5;
+}
+
+.btn-delete-post {
+  background-color: var(--color-red);
+}
+
+.btn-floating:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.btn-floating .bi {
+  margin: 0;
+}
+
+/* Form Components */
 
 textarea {
   padding: 1em 1em 1em 0;
@@ -349,6 +389,9 @@ textarea {
 
 .loggedin-user-info {
   margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .loggedin-user-info img {
@@ -376,12 +419,102 @@ textarea {
   padding-right: 1em;
 }
 
+.post-info .author-meta {
+  color: var(--color-boldorange);
+  font-weight: 500;
+}
+
 .post-meta {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1em;
   font-size: 1.05em;
+}
+
+/* Create Post */
+.create-post-container {
+  padding: 0 1em;
+}
+
+.create-post-container.active:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+
+.create-post-form {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: 2em 2em;
+  position: fixed;
+  width: calc(100% - 2em);
+  max-width: 560px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  transition: var(--transform);
+  box-shadow: var(--box-shadow);
+  z-index: 5;
+}
+
+.create-post-container.active .create-post-form {
+  transform: translate(-50%, -50%);
+}
+
+.create-post-form button {
+  width: 100%;
+}
+
+.create-post-form h3 {
+  margin-bottom: 1em;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.form-control input,
+.form-control textarea,
+.form-control select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-heather);
+  min-height: 2.5em;
+  appearance: none;
+}
+
+.form-control textarea {
+  padding: 1em;
+}
+
+.form-control label {
+  margin-bottom: 0.5em;
+}
+
+.form-control input,
+.form-control select {
+  padding: 0 0.625em;
+}
+
+/* Success & Errors messages */
+.success {
+  background-color: #d7ffe8;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-weight: 400;
+  color: #287f4e;
 }
 
 /* Select Box */
@@ -583,7 +716,7 @@ footer {
   cursor: pointer;
   transform: scale(0.9);
   background-color: var(--color-white);
-  transition: transform 0.4s cubic-bezier(0, 0.8, 0.13, 1);
+  transition: var(--transform);
 }
 
 .user-select:hover {

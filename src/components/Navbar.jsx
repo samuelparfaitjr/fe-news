@@ -8,12 +8,18 @@ const Navbar = () => {
 
   return (
     <nav className="navbar row">
-      <div className="profile-info">
-        <div>
-          Hi,{" "}
-          <span className="profile-name">{user ? username : "Guest"}</span>
+      <div></div>
+      <div className="navbar-controls">
+        <div className="profile-info">
+          <img
+            src={user ? avatar : panda}
+            alt={username}
+            className="profile-avatar"
+          />
+          <span className="profile-name">
+            Welcome!, <strong>{username || 'Panda'}</strong>
+          </span>
         </div>
-        <img src={user ? avatar : panda} alt={username} className="profile-avatar" />
       </div>
     </nav>
   );
