@@ -23,6 +23,7 @@ const Home = () => {
 
   const { user } = useContext(UserContext);
 
+
   // Handle sort
   const handleSort = (e) => {
     if (e.target.nodeName !== "SPAN") setSort(e.target.search);

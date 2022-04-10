@@ -13,7 +13,7 @@ const CreatePost = ({ newPost, setNewPost }) => {
   const [success, setSuccess] = useState("");
 
   const { user } = useContext(UserContext);
-  const [username] = user;
+  console.log(user);
 
   const handleReset = () => {
     Array.from(document.querySelectorAll("input")).forEach(
@@ -25,7 +25,7 @@ const CreatePost = ({ newPost, setNewPost }) => {
   };
 
   const handleChange = (e) => {
-    const postData = { title, topic, body, username };
+    const postData = { title, topic, body };
   };
 
   const handleSubmit = (e) => {
