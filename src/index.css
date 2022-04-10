@@ -43,7 +43,7 @@ body {
   min-height: 100%;
   font-family: Rubik, sans-serif;
   font-size: calc(16px + 0.25vw);
-  line-height: 1.5;
+  line-height: 1.4;
   font-weight: 300;
   color: var(--color-foreground);
   background-color: var(--color-background);
@@ -343,7 +343,7 @@ article:hover {
 
 .btn-post {
   border: none;
-  padding: 0.825em 1em;
+  padding: 0.925em 1em;
   border-radius: var(--border-radius);
   font-family: inherit;
   font-weight: inherit;
@@ -355,7 +355,7 @@ article:hover {
 }
 
 .btn-post:active {
-  transform: scale(0.98);
+  background-color: var(--color-boldorange);
 }
 
 /* Floating Buttons */
@@ -397,6 +397,13 @@ textarea {
   font-weight: inherit;
   outline: none;
   resize: none;
+}
+
+textarea:focus,
+input:focus,
+select:focus,
+button:focus {
+  outline: 1px solid red;
 }
 
 .loggedin-user-info {
@@ -475,6 +482,7 @@ textarea {
   z-index: 5;
 }
 
+
 .create-post-container.active .create-post-form {
   transform: translate(-50%, -50%);
 }
@@ -520,14 +528,12 @@ textarea {
 }
 
 .form-control .select-form {
-
 }
 
 .form-control .icons {
   position: absolute;
   right: 1em;
   top: 60%;
-
 }
 
 /* Success & Errors messages */
@@ -553,6 +559,7 @@ textarea {
   text-align: center;
   font-weight: 400;
   color: #8f1f1f;
+  list-style-type: none;
 }
 
 .server-error {

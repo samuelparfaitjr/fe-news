@@ -61,19 +61,11 @@ export const updateVote = async (voteId, count) => {
   }
 };
 
-export const createArticle = async (inputs) => {
-  const post = {
-    title: inputs.title,
-    topic: inputs.topic,
-    author: inputs.author,
-    body: inputs.body,
-  };
+export const createArticle = async (postData) => {
   try {
-    const { data } = await beNews.post("/articles", post);
-    console.log(data);
+    const { data } = await beNews.post("/articles", postData);
     return data;
   } catch (error) {
-    console.log(error)
     return error.response.data;
   }
 };

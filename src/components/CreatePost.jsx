@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../context/User";
 import { createArticle } from "../api/be-news";
+import { useNavigate } from "react-router-dom";
 
 import Icon from "./Icon";
 
@@ -8,12 +9,13 @@ const CreatePost = ({ newPost, setNewPost }) => {
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("");
   const [body, setBody] = useState("");
-  const [serverError, setServerError] = useState(null);
+  const [serverError, setServerError] = useState("");
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
 
   const { user } = useContext(UserContext);
-  console.log(user);
+  const [author] = user || [];
+  const navigate = useNavigate();
 
   const handleReset = () => {
     Array.from(document.querySelectorAll("input")).forEach(
@@ -24,12 +26,10 @@ const CreatePost = ({ newPost, setNewPost }) => {
     setBody("");
   };
 
-  const handleChange = (e) => {
-    const postData = { title, topic, body };
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const postData = { title, topic, body, author };
 
     const messages = [];
 
@@ -38,25 +38,31 @@ const CreatePost = ({ newPost, setNewPost }) => {
     }
 
     if (body === undefined || body === "") {
-      messages.push("Comment cannot be blank");
+      messages.push("Message cannot be blank");
+    }
+
+    if (topic === undefined || topic === "") {
+      messages.push("You must choose a topic");
     }
 
     if (messages.length > 0) {
       setErrors(messages);
       setSuccess("");
     } else {
-      createArticle().then((response) => {
+      createArticle(postData).then((response) => {
         if (response.message) {
           setServerError(response.message);
         } else {
+          setSuccess("Success!");
+          setServerError("");
           setTimeout(() => {
             setNewPost(false);
+            navigate("/");
           }, 2000);
 
           setTimeout(() => {
             setSuccess("");
           }, 3000);
-          setSuccess("Success!");
           setErrors([]);
         }
       });
@@ -114,8 +120,9 @@ const CreatePost = ({ newPost, setNewPost }) => {
             <select
               value={topic || ""}
               required
-              onChange={(e) => setTopic(topic)}
+              onChange={(e) => setTopic(e.target.value)}
             >
+              <option defaultValue="null">Choose a topic</option>
               <option value="cooking">Cooking</option>
               <option value="coding">Coding</option>
               <option value="football">Football</option>
@@ -124,11 +131,12 @@ const CreatePost = ({ newPost, setNewPost }) => {
 
           {/* Body */}
           <div className="form-control">
-            <label htmlFor="topic">Write a post</label>
+            <label htmlFor="article">Write an article</label>
             <textarea
-              placeholder="Write your post here..."
+              value={body || ""}
+              placeholder="Start typing here..."
               required
-              onChange={(e) => setTopic(topic)}
+              onChange={(e) => setBody(e.target.value)}
             ></textarea>
           </div>
 

@@ -71,7 +71,7 @@ const Single = () => {
         {username === article.author ? (
           <button
             className="btn-delete-post btn-floating"
-            onClick={() => console.log("delete")}
+            // onClick={() => console.log("it works!")}
           >
             <Icon name="trash" size={24} />
           </button>
