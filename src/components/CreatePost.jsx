@@ -4,6 +4,7 @@ import { createArticle } from "../api/be-news";
 import { useNavigate } from "react-router-dom";
 
 import Icon from "./Icon";
+import Preloader from "./Preloader";
 
 const CreatePost = ({ newPost, setNewPost }) => {
   const [title, setTitle] = useState("");
@@ -12,6 +13,7 @@ const CreatePost = ({ newPost, setNewPost }) => {
   const [serverError, setServerError] = useState("");
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { user } = useContext(UserContext);
   const [author] = user || [];
@@ -49,6 +51,7 @@ const CreatePost = ({ newPost, setNewPost }) => {
       setErrors(messages);
       setSuccess("");
     } else {
+      setLoading(true);
       createArticle(postData).then((response) => {
         if (response.message) {
           setServerError(response.message);
@@ -64,6 +67,7 @@ const CreatePost = ({ newPost, setNewPost }) => {
             setSuccess("");
           }, 3000);
           setErrors([]);
+          setLoading(false);
         }
       });
       handleReset();
@@ -141,7 +145,9 @@ const CreatePost = ({ newPost, setNewPost }) => {
           </div>
 
           {/* Submit Button */}
-          <button className="btn-post">Add Post</button>
+          <button className="btn-post">
+            {loading ? 'Sending...' : "Add Post"}
+          </button>
         </form>
         <div></div>
       </div>
