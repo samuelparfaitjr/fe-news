@@ -3,7 +3,7 @@
 
 Fe-News is a tiny blog I developped using [ReactJS](https://reactjs.org/). It allows users to read, create and delete articles or comments. This app is meant for development purposes only and doesn't include fully fledged blog CMS system. In order to create, delete articles or comments, you must choose one of the predefined profiles by clicking on the **users** tab. Have fun 😁!
 
-![Preview](/assets/images/preview.png)
+![Preview](https://github.com/wakenado/fe-news/blob/main/src/assets/images/preview.png)
 
 A live version of the site is available at [here](https://shiny-cocada-dea6ac.netlify.app/)
 
