@@ -286,6 +286,21 @@ article:hover {
   justify-content: space-between;
 }
 
+.author-thumbnail {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.author-thumbnail .bi {
+  margin: 0;
+}
+
 /* Vote Component */
 .vote-controls {
   display: flex;
@@ -326,6 +341,11 @@ article:hover {
   background-color: var(--color-white);
   padding: 1em;
   border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.comment-info {
+  overflow: hidden;
 }
 
 /* Post Comment */

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../context/User";
-import panda from "../assets/avatar.jpeg";
+import guest from "../assets/avatar.png";
 
 const Navbar = () => {
   const { user } = useContext(UserContext);
@@ -12,12 +12,12 @@ const Navbar = () => {
       <div className="navbar-controls">
         <div className="profile-info">
           <img
-            src={user ? avatar : panda}
+            src={user ? avatar : guest}
             alt={username}
             className="profile-avatar"
           />
           <span className="profile-name">
-            Welcome!, <strong>{username || 'Panda'}</strong>
+            Welcome!, <strong>{username || 'Guest'}</strong>
           </span>
         </div>
       </div>

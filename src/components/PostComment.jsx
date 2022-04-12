@@ -1,4 +1,4 @@
-import Avatar from "../assets/avatar.jpeg";
+import guest from "../assets/avatar.png";
 import Icon from "./Icon";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -97,7 +97,7 @@ const PostComment = ({
         <div className="loggedin-info">
           <h3>Leave a comment</h3>
           <div className="loggedin-user-info no-profile-comment">
-            <img src={Avatar} alt="Guest" />
+            <img src={guest} alt="Guest" />
             <div className="no-profile-message">
               Sorry, you can't leave comments. Switch{" "}
               <Link to="/users" className="no-profile-link">
