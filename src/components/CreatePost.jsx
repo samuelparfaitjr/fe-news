@@ -4,7 +4,6 @@ import { createArticle } from "../api/be-news";
 import { useNavigate } from "react-router-dom";
 
 import Icon from "./Icon";
-import Preloader from "./Preloader";
 
 const CreatePost = ({ newPost, setNewPost }) => {
   const [title, setTitle] = useState("");
@@ -58,16 +57,13 @@ const CreatePost = ({ newPost, setNewPost }) => {
         } else {
           setSuccess("Success!");
           setServerError("");
-          setTimeout(() => {
-            setNewPost(false);
-            navigate("/");
-          }, 2000);
-
-          setTimeout(() => {
-            setSuccess("");
-          }, 3000);
           setErrors([]);
           setLoading(false);
+          setTimeout(() => {
+            setNewPost(false);
+            setSuccess("");
+            navigate(`/articles/${response.article_id}`);
+          }, 2000);
         }
       });
       handleReset();
@@ -100,7 +96,7 @@ const CreatePost = ({ newPost, setNewPost }) => {
           {/* Success Message */}
           {success ? (
             <div className="success">
-              Hooray! New post created. <Icon name="check-all" size={24} />
+              Hooray! New post created <Icon name="check-all" size={24} />
             </div>
           ) : null}
         </div>
@@ -146,7 +142,7 @@ const CreatePost = ({ newPost, setNewPost }) => {
 
           {/* Submit Button */}
           <button className="btn-post">
-            {loading ? 'Sending...' : "Add Post"}
+            {loading ? "Wait..." : "Add Post"}
           </button>
         </form>
         <div></div>

@@ -20,18 +20,25 @@ const Home = () => {
   const [error, setError] = useState();
   const [active, setActive] = useState(false);
   const [newPost, setNewPost] = useState(false);
+  const [limit, setLimit] = useState(6);
 
   const { user } = useContext(UserContext);
 
-
   // Handle sort
   const handleSort = (e) => {
-    if (e.target.nodeName !== "SPAN") setSort(e.target.search);
+    if (e.target.nodeName === "A") {
+      setSort(e.target.search);
+    }
     setActive(!active);
   };
 
   // Fetching topics && sorting posts
   const { slug } = useParams();
+
+  // Handle Load More
+  const handleLoadMore = () => {
+    setLimit(limit + 6);
+  };
 
   // Fetching Data
   useEffect(() => {
@@ -42,7 +49,7 @@ const Home = () => {
       setPosts(response);
       setLoading(false);
     });
-  }, [slug, sort]);
+  }, [slug, sort, newPost]);
 
   // Show loader if loading
   if (loading) return <Preloader />;
@@ -53,8 +60,15 @@ const Home = () => {
       <div className="container">
         <h2 className="section-title">{slug || "Articles"}</h2>
         <Select posts={posts} handleSort={handleSort} active={active} />
-        {/* <Post posts={posts} handleDelete={handleDelete} /> */}
-        <Post posts={posts} />
+
+        <Post posts={posts} limit={limit} />
+        {limit < posts.length && (
+          <div className="load-more">
+            <button className="btn-post load-more" onClick={handleLoadMore}>
+              {loading ? "Wait..." : "Load More"}
+            </button>
+          </div>
+        )}
       </div>
       <CreatePost newPost={newPost} setNewPost={setNewPost} />
       {user ? (

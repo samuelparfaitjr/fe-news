@@ -31,7 +31,6 @@ html {
   --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   --border-radius: 5px;
   --app-width: 1200px;
-  --transform: transform 0.4s cubic-bezier(0.87, 0, 0.13, 1);
 }
 
 * {
@@ -83,6 +82,11 @@ img {
 
 button {
   cursor: pointer;
+}
+
+button span,
+button i {
+  pointer-events: none;
 }
 
 input,
@@ -362,9 +366,9 @@ article:hover {
 
 .btn-floating {
   position: fixed;
+  top: 50%;
   right: 1em;
-  bottom: 1em;
-  transform: scale(1);
+  transform: translateY(-50%) scale(1);
   background-color: var(--color-black);
   color: var(--color-white);
   width: 60px;
@@ -380,7 +384,7 @@ article:hover {
 }
 
 .btn-floating:active {
-  transform: scale(0.95);
+  transform: translateY(-50%) scale(0.95);
 }
 
 .btn-floating .bi {
@@ -399,10 +403,9 @@ textarea {
   resize: none;
 }
 
-textarea:focus,
+textarea:focus:not(.post-form-controls textarea),
 input:focus,
-select:focus,
-button:focus {
+select:focus {
   outline: 1px solid red;
 }
 
@@ -477,11 +480,10 @@ button:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, 100%);
-  transition: var(--transform);
+  transition: transform 0.4s cubic-bezier(0.5, 0.5, 0.15, 1);
   box-shadow: var(--box-shadow);
   z-index: 5;
 }
-
 
 .create-post-container.active .create-post-form {
   transform: translate(-50%, -50%);
@@ -525,9 +527,6 @@ button:focus {
 .form-control input,
 .form-control select {
   padding: 0 0.625em;
-}
-
-.form-control .select-form {
 }
 
 .form-control .icons {
@@ -775,7 +774,7 @@ footer {
   cursor: pointer;
   transform: scale(0.9);
   background-color: var(--color-white);
-  transition: var(--transform);
+  transition: transform 0.4s cubic-bezier(0, 0.8, 0.13, 1);
 }
 
 .user-select:hover {
@@ -785,8 +784,16 @@ footer {
 
 .user-select:active {
   border: 3px solid var(--color-darkorange);
+  transform: scale(0.9);
 }
 
 .avatar-label {
   font-weight: 500;
+}
+
+/* Load More */
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25em;
 }

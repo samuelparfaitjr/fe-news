@@ -69,3 +69,33 @@ export const createArticle = async (postData) => {
     return error.response.data;
   }
 };
+
+export const postComment = async (comment, articleId) => {
+  try {
+    const { data } = await beNews.post(
+      `/articles/${articleId}/comments`,
+      comment
+    );
+    return data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export const deleteComment = async (commentId) => {
+  try {
+    const { data } = await beNews.delete(`/comments/${commentId}`);
+    return data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export const deleteArticle = async (articleId) => {
+  try {
+    const { data } = await beNews.delete(`/articles/${articleId}`);
+    return data;
+  } catch (error) {
+    return error.response.data;
+  }
+};

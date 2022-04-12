@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
 
@@ -6,8 +5,7 @@ import * as utils from "../utils/helpers";
 
 import moment from "moment";
 
-const Post = ({ posts }) => {
-
+const Post = ({ posts, limit }) => {
   return (
     <div className="grid">
       {posts.length === 0 ? (
@@ -18,7 +16,7 @@ const Post = ({ posts }) => {
           </div>
         </div>
       ) : (
-        posts.map((post) => {
+        posts.slice(0, limit).map((post) => {
           return (
             <div key={post.article_id} className="grid">
               <Link to={`/articles/${post.article_id}`}>
@@ -33,9 +31,7 @@ const Post = ({ posts }) => {
                         {utils.excerpt(post.body, 50)}
                       </p>
                     </div>
-                    <div className="meta-date">
-                      {moment(post.created_at, "YYYYMMDD").fromNow()}
-                    </div>
+                    <div className="meta-date">{moment().format("ll")}</div>
                   </div>
                   <div className="post-meta">
                     <span className="meta-comment">
