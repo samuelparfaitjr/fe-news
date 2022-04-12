@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { fetchComments, deleteComment, fetchUsers } from "../api/be-news";
+import { fetchComments, deleteComment } from "../api/be-news";
 import { UserContext } from "../context/User";
 
 // Components
@@ -16,7 +16,6 @@ const Comment = ({ articleId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [serverError, setServerError] = useState(null);
-  const [users, setUsers] = useState([]);
 
   const { user } = useContext(UserContext);
   const [username, avatar] = user || [];
@@ -30,16 +29,6 @@ const Comment = ({ articleId }) => {
       setLoading(false);
     });
   }, [articleId]);
-
-  useEffect(() => {
-    fetchUsers().then((response) => {
-      if (response.message) {
-        setError(response.message);
-      }
-      setUsers(response);
-      setLoading(false);
-    });
-  }, []);
 
   if (error) return <Error response={error} />;
   if (loading) return <Preloader />;
