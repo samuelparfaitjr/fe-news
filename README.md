@@ -25,7 +25,6 @@ Follow the guide below to install a local version on your  machine
 ```
 npm install
 npm start
-
 ```
 The app will be accessible at http://localhost:3000.
 
